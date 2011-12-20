@@ -4,13 +4,13 @@
 "
 "" Version: 1.0
 "
-" How to install
+" How_to_install:
 "    $ cd
 "    $ git clone git://github.com/osolong/vim-scripts.git
 "    $ cd vim_scripts
 "    $ ./vim_install.sh
 "
-" How_to_Upgrade:
+" How_to_upgrade:
 "    $ pushd ~/vim-scripts
 "    $ git pull origin master
 "    $ popd
