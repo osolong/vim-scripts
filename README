@@ -1,0 +1,47 @@
+ Developer: osolong
+             https://github.com/osolong/vim-scripts
+
+ Version: 1.0
+
+ How_to_install:
+    $ cd
+    $ git clone git://github.com/osolong/vim-scripts.git
+    $ cd vim_scripts
+    $ ./vim_install.sh
+
+ How_to_upgrade:
+    $ pushd ~/vim-scripts
+    $ git pull origin master
+    $ popd
+
+ Sections:
+    -> General
+    -> VIM user interface
+    -> Text, tab and indent related
+    -> Vim grep
+    -> Cscope
+    -> Taglist Plugin
+    -> Project Plugin
+    -> Tag Generation
+    -> Hex Mode
+    -> Sessions
+
+ Plugins_Included:
+     > taglist.vim - http://www.vim.org/scripts/download_script.php?src_id=7701
+       Source code browser plugin
+
+     > project.vim - http://www.vim.org/scripts/download_script.php?src_id=6273
+       Sets up a list of frequently-accessed files for easy navigation
+
+     > EnhCommentify.vim - http://www.vim.org/scripts/download_script.php?src_id=8319
+       Enhanced Commentify. Quickly comments lines in a program.
+
+     > supertab.vim - http://www.vim.org/scripts/download_script.php?src_id=16104
+       SuperTab. Do all your insert-mode completion with Tab.
+
+     > cscope_maps.vim - http://cscope.sourceforge.net/cscope_maps.vim
+       Cscope key mapping for vim.
+
+
+  Revisions:
+     > 0.1 Initial commit.
