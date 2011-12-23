@@ -35,6 +35,9 @@ install_cscope_maps() {
     create_if_missing "$PLUGIN"
     cd "$PLUGIN"
     sudo wget -O cscope_maps.vim  $WGET_CSCOPE_MAPS
+    cd
+    cd $DIRECTORY
+    sudo cp cscope_gen.sh /usr/bin
 }
 
 install_taglist (){

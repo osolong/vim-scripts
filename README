@@ -1,7 +1,7 @@
  Developer: osolong
              https://github.com/osolong/vim-scripts
 
- Version: 1.0
+ Version: 0.2
 
  How_to_install:
     $ cd
@@ -13,18 +13,6 @@
     $ pushd ~/vim-scripts
     $ git pull origin master
     $ popd
-
- Sections:
-    -> General
-    -> VIM user interface
-    -> Text, tab and indent related
-    -> Vim grep
-    -> Cscope
-    -> Taglist Plugin
-    -> Project Plugin
-    -> Tag Generation
-    -> Hex Mode
-    -> Sessions
 
  Plugins_Included:
      > taglist.vim - http://www.vim.org/scripts/download_script.php?src_id=7701
@@ -45,3 +33,4 @@
 
   Revisions:
      > 0.1 Initial commit.
+     > 0.2 Miscelaneous fixes. Added F5 to show hidden characters. F6 to replace tabs with spaces.
