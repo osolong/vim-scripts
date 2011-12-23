@@ -81,6 +81,18 @@ install_super_tab() {
     sudo vim /usr/src/supertab.vba -c ":so %" -c ":q"
 }
 
+install_colorgcc() {
+    cd
+    cd $DIRECTORY
+    sudo cp colorgcc /usr/bin
+    sudo cp colorgccrc ~/.colorgccrc
+    cd /usr/local/bin
+    sudo ln -s /usr/bin/colorgcc gcc
+    sudo ln -s /usr/bin/colorgcc g++
+    sudo ln -s /usr/bin/colorgcc cc
+    sudo ln -s /usr/bin/colorgcc c++
+}
+
 initial_setup
 create_vimrc
 install_taglist
@@ -88,6 +100,7 @@ install_project
 install_enh_comment
 install_super_tab
 install_cscope_maps
+install_colorgcc
 
 echo "----------------------------------------------------"
 echo "|                                                  |"
