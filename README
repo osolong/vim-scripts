@@ -1,7 +1,7 @@
  Developer: osolong
              https://github.com/osolong/vim-scripts
 
- Version: 0.3
+ Version: 0.4
 
  How_to_install:
     $ cd
@@ -34,4 +34,5 @@
   Revisions:
      > 0.1 Initial commit.
      > 0.2 Miscelaneous fixes. Added F5 to show hidden characters. F6 to replace tabs with spaces.
-     > 0.3 Added colorgcc from Johannes Schluter https://github.com/johannes/colorgcc
+     > 0.3 Added colorgcc from Johannes Schluter https://github.com/johannes/colorgcci
+     > 0.4 Added coloredlogcat.py from Jeff Sharkey http://jsharkey.org. Renamed as color-logcat
