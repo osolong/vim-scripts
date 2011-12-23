@@ -145,7 +145,7 @@ nnoremap <silent> <F2> :HexmodeDx<CR> " Toggle Hex Mode
 """"""""""""""""""""""""""""""
 "Load Cscope
     function! LoadCscope()
-        let db = findfile("cscope.out", "/home/**/vim-scripts/cscope")
+        let db = findfile("cscope.out", "where_is_cscope")
         if (!empty(db))
             let path = strpart(db, 0, match(db, "/cscope.out$"))
             set nocscopeverbose " suppress 'duplicate connection' error
