@@ -17,7 +17,7 @@ initial_setup () {
     echo " vim vim-common vim-gnome vim-gui-common vim-runtime exuberant-ctags cscope"
     echo "========================================================"
     sudo apt-get -y install vim vim-common vim-gnome vim-gui-common vim-runtime exuberant-ctags cscope
-    _r1="\/home\/$(whoami)\/vim-scrpits\/cscope"
+    _r1="\/home\/$(whoami)\/vim-scripts\/cscope"
     sed -i "s/where_is_cscope/$_r1/g" vimrc
 }
 

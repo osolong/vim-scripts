@@ -145,7 +145,7 @@ nnoremap <silent> <F2> :HexmodeDx<CR> " Toggle Hex Mode
 """"""""""""""""""""""""""""""
 "Load Cscope
     function! LoadCscope()
-        let db = findfile("cscope.out", "where_is_cscope")
+        let db = findfile("cscope.out", "/home/brlrrodr/vim-scrpits/cscope")
         if (!empty(db))
             let path = strpart(db, 0, match(db, "/cscope.out$"))
             set nocscopeverbose " suppress 'duplicate connection' error
@@ -180,7 +180,7 @@ let Tlist_WinWidth = 27
     nmap <silent> <F3> <Plug>ToggleProject
     let g:proj_window_width = 25
     let g:proj_window_increment = 0
-    set tags+=~/.vim/tags/kernel
+    set tags+=~/vim-scripts/tags/kernel
 
 """"""""""""""""""""""""""""""
 " => Tag Generation
