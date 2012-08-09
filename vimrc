@@ -235,36 +235,44 @@ command! -bar HexmodeDx call ToggleHexDx()
 " => Sessions
 """"""""""""""""""""""""""""""
 " automatically load and save session on start/exit.
+" Creates a session
 function! MakeSession()
-    let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
-    if (filewritable(b:sessiondir) != 2)
-        exe 'silent !mkdir -p ' b:sessiondir
-        redraw!
-    endif
-    let b:filename = b:sessiondir . '/session.vim'
-    exe "mksession! " . b:filename
+  let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p ' b:sessiondir
+    redraw!
+  endif
+  let b:sessionfile = b:sessiondir . '/session.vim'
+  exe "mksession! " . b:sessionfile
 endfunction
 
 " Updates a session, BUT ONLY IF IT ALREADY EXISTS
 function! UpdateSession()
-    let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
-    let b:sessionfile = b:sessiondir . "session.vim"
-    if (filereadable(b:sessionfile))
-        exe "mksession! " . b:filename
-    endif
+  let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
+  let b:sessionfile = b:sessiondir . "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe "mksession! " . b:sessionfile
+    echo "updating session"
+  endif
 endfunction
 
 " Loads a session if it exists
 function! LoadSession()
+  if argc() == 0
     let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
     let b:sessionfile = b:sessiondir . "/session.vim"
     if (filereadable(b:sessionfile))
-        exe 'source ' b:sessionfile
+      exe 'source ' b:sessionfile
     else
-        echo "No session loaded."
+      echo "No session loaded."
     endif
+  else
+    let b:sessionfile = ""
+    let b:sessiondir = ""
+  endif
 endfunction
 
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call UpdateSession()
 map <leader>m :call MakeSession()<CR>
+
