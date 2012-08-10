@@ -85,7 +85,9 @@ set autoindent smartindent          " turn on auto/smart indenting
 set smarttab                        "make <tab> and <backspace> smarter
 set tabstop=4                       " tabstops of 4
 set shiftwidth=4                    " indents of 4
-set expandtab                       " use spaces, not tabs
+set noexpandtab                     " use tabs, not spaces
+set formatoptions=tcqlron 	    " format text comments
+set foldmethod=syntax 		    " fold code based on {}
 
 " Tab management
 map <leader>tn :tabnew %<cr>        " Open a new tab
@@ -115,17 +117,19 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+syn keyword cType uint ubyte ulong uint64_t uint32_t uint16_t uint8_t boolean_t int64_t int32_t int16_t int8_t u_int64_t u_int32_t u_int16_t u_int8_t
+syn keyword cOperator likely unlikely
 
 "Toggle Show Hidden Characters
 "Tabs, Trailing Spaces and EOL
 let g:showHidden = 0
 function ToggleShowHiddenChars()
-    if g:showHidden
-        set nolist
-    else
-        set list listchars=tab:»·,trail:·,eol:¶,nbsp:·
-    endif
-    let g:showHidden = !g:showHidden
+	if g:showHidden
+		set nolist
+	else
+		set list listchars=tab:»·,trail:·,eol:¶,nbsp:·
+	endif
+	let g:showHidden = !g:showHidden
 endfunction
 
 nmap <silent> <F5> <Esc>:call ToggleShowHiddenChars()<CR>
