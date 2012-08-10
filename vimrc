@@ -86,8 +86,6 @@ set smarttab                        "make <tab> and <backspace> smarter
 set tabstop=4                       " tabstops of 4
 set shiftwidth=4                    " indents of 4
 set noexpandtab                     " use tabs, not spaces
-set formatoptions=tcqlron 	    " format text comments
-set foldmethod=syntax 		    " fold code based on {}
 
 " Tab management
 map <leader>tn :tabnew %<cr>        " Open a new tab
