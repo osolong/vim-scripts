@@ -80,7 +80,7 @@ install_super_tab() {
     cd
     export user=$(whoami)
     sudo chown -R $user:$user vim-scripts
-    sudo vim /usr/src/supertab.vba -c ":so %" -c ":q"
+    sudo vim /usr/src/supertab.vba -c ":so %" -c ":q" -c ":helptags ~/vim-scripts/doc"
 }
 
 install_colortools() {
