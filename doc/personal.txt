@@ -1,0 +1,14 @@
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
+
+Notes about vim *vim* *rrcvim* <<<
+ <leader> 		,
+ <leader>tn 	tabnew
+ <leader>tc 	tabclose
+ <leader>m 		MakeSession
+ <C-J> 			Force indent of block
+ <F2> 			HexMode
+ <F5> 			Toggle hide hidden characters
+ <F6> 			Convert tabs to spaces
+
+ Regenerate help tags: |helptags|
+
