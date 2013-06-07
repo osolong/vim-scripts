@@ -277,6 +277,5 @@ function! LoadSession()
 endfunction
 
 au VimEnter * nested :call LoadSession()
-au VimLeave * :call UpdateSession()
 map <leader>m :call MakeSession()<CR>
-
+map <leader>l :call LoadSession()<CR>
