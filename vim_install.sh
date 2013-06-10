@@ -8,7 +8,7 @@ CSCOPE_PATH=$HOME/cscope
 WGET_TAGLIST=http://www.vim.org/scripts/download_script.php?src_id=19574
 WGET_PROJECT=http://www.vim.org/scripts/download_script.php?src_id=6273
 WGET_ENH_COMMENT=http://www.vim.org/scripts/download_script.php?src_id=8319
-WGET_SUPER_TAB=http://www.vim.org/scripts/download_script.php?src_id=16104
+WGET_SUPER_TAB=http://www.vim.org/scripts/download_script.php?src_id=18075
 WGET_CSCOPE_MAPS=http://cscope.sourceforge.net/cscope_maps.vim
 
 initial_setup () {
