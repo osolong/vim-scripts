@@ -114,7 +114,7 @@ install_usbreset() {
 	cd $DIRECTORY
 	mkdir bin
 	gcc usbreset.c -o bin/usbreset 
-	sudo cp usbreset /usb/bin
+	sudo cp usbreset /usb/bin/
 }
 
 initial_setup
