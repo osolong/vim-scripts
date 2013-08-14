@@ -109,6 +109,14 @@ install_clangcomplete() {
 	sudo rm -r code/
 }
 
+install_usbreset() {
+	cd
+	cd $DIRECTORY
+	mkdir bin
+	gcc usbreset.c -o bin/usbreset 
+	sudo cp usbreset /usb/bin
+}
+
 initial_setup
 create_vimrc
 install_taglist
@@ -120,6 +128,7 @@ install_colortools
 cd
 sudo chown -R $user:$user vim-scripts
 install_clangcomplete
+install_usbreset
 
 echo "----------------------------------------------------"
 echo "|                                                  |"

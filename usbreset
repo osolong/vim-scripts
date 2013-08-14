@@ -1,0 +1,15 @@
+#!/bin/bash
+ if [ $# -eq 0 ]
+  then
+    echo "Please provide VendorID:DeviceID as argument"
+	echo "i.e.:"
+	echo "    usbreset 067b:2303"
+	echo
+	echo "Connected devices:"
+	echo "lsusb"
+	lsusb
+	exit 0 
+fi
+sudo /home/$USER/vim-scripts/bin/usbreset /dev/bus/usb/$(lsusb -d $1 | sed -r 's/([^0-9]*([0-9]*)){1}.*/\2/')/$(lsusb -d $1 | sed -r 's/([^0-9]*([0-9]*)){2}.*/\2/')
+
+
