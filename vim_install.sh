@@ -10,13 +10,14 @@ WGET_PROJECT=http://www.vim.org/scripts/download_script.php?src_id=6273
 WGET_ENH_COMMENT=http://www.vim.org/scripts/download_script.php?src_id=8319
 WGET_SUPER_TAB=http://www.vim.org/scripts/download_script.php?src_id=18075
 WGET_CSCOPE_MAPS=http://cscope.sourceforge.net/cscope_maps.vim
+GITHUB_CLANG_COMPLETE=https://github.com/Rip-Rip/clang_complete.git
 
 initial_setup () {
     echo "========================================================"
     echo " Installing vim"
     echo " vim vim-common vim-gnome vim-gui-common vim-runtime exuberant-ctags cscope"
     echo "========================================================"
-    sudo apt-get -y install vim vim-common vim-gnome vim-gui-common vim-runtime exuberant-ctags cscope
+    sudo apt-get -y install vim vim-common vim-gnome vim-gui-common vim-runtime exuberant-ctags cscope clang-dev git-core
     _r1="\/home\/$(whoami)\/vim-scripts\/cscope"
     sed -i "s/where_is_cscope/$_r1/g" vimrc
 }
@@ -79,7 +80,6 @@ install_super_tab() {
 
     cd
     export user=$(whoami)
-    sudo chown -R $user:$user vim-scripts
     sudo vim /usr/src/supertab.vba -c ":so %" -c ":q" -c ":helptags ~/vim-scripts/doc"
 }
 
@@ -96,6 +96,19 @@ install_colortools() {
     sudo ln -s /usr/bin/colorgcc c++
 }
 
+install_clangcomplete() {
+    cd
+    cd $DIRECTORY
+	mkdir code
+	cd code
+	git clone $GITHUB_CLANG_COMPLETE
+	cd clang_complete
+	make install
+	cd
+	cd $DIRECTORY
+	sudo rm -r code/
+}
+
 initial_setup
 create_vimrc
 install_taglist
@@ -103,7 +116,9 @@ install_project
 install_enh_comment
 install_super_tab
 install_cscope_maps
-install_colortools
+install_colortool
+sudo chown -R $user:$user vim-scripts
+install_clang_complete
 
 echo "----------------------------------------------------"
 echo "|                                                  |"
