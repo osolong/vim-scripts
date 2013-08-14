@@ -117,8 +117,10 @@ install_enh_comment
 install_super_tab
 install_cscope_maps
 install_colortools
+cd
+cd $DIRECTORY
 sudo chown -R $user:$user vim-scripts
-install_clan_complete
+install_clangcomplete
 
 echo "----------------------------------------------------"
 echo "|                                                  |"
