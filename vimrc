@@ -59,7 +59,7 @@ set rtp+=~/vim-scripts/bundle/vundle/
 call vundle#rc("~/vim-scripts/bundle")
 
  " let Vundle manage Vundle
- " required! 
+ " required!
  Bundle 'gmarik/vundle'
 
  Bundle 'ervandew/supertab'
@@ -69,6 +69,7 @@ call vundle#rc("~/vim-scripts/bundle")
  Bundle 'msanders/snipmate.vim'
  Bundle 'scrooloose/nerdtree'
  Bundle 'osolong/vim-perforce'
+ Bundle 'mileszs/ack.vim'
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim-scripts/vimrc

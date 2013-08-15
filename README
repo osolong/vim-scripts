@@ -1,7 +1,7 @@
  Developer: osolong
              https://github.com/osolong/vim-scripts
 
- Version: 0.5
+ Version: 0.7
 
  How_to_install:
     $ cd
@@ -33,6 +33,13 @@
 	 > clang_complete - https://github.com/Rip-Rip/clang_complete
 		Use of Clang for completing C, C++, Objective-C and Objective-C++
 
+	 > vim-perforce - https://github.com/osolong/vim-perforce
+	 	Perforce plugin for VIM
+
+
+	 > ack.vim - https://github.com/mileszs/ack.vim
+	 	Vim plugin for the Perl module / CLI script 'ack'
+
   Revisions:
      > 0.1 Initial commit.
      > 0.2 Miscelaneous fixes. Added F5 to show hidden characters. F6 to replace tabs with spaces.
@@ -40,3 +47,4 @@
      > 0.4 Added coloredlogcat.py from Jeff Sharkey http://jsharkey.org. Renamed as color-logcat
 	 > 0.5 Added clang_complete, NERDTree and snipmate
 	 > 0.6 Changed to Vundle Plugin Manager. Removed Project and EnhancedCommentify.
+	 > 0.7 Added Perforce and ack plugins
