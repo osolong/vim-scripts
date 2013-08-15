@@ -38,7 +38,11 @@ create_if_missing() {
 install_cscope_maps() {
     cd
     cd $DIRECTORY
-    sudo cp cscope_gen.sh /usr/bin
+	if [ ! -e /usr/bin/cscope_gen.sh ]; then
+    	sudo cp cscope_gen.sh /usr/bin
+	else
+		sudo cp -i cscope_gen.sh /usr/bin
+	fi
 }
 
 install_colortools() {
