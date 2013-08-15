@@ -79,6 +79,7 @@ create_vimrc
 install_usbreset
 install_colortools
 install_vundle
+install_cscope_maps
 cd
 sudo chown -R $user:$user vim-scripts
 install_usbreset
