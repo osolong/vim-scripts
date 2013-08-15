@@ -68,6 +68,7 @@ call vundle#rc("~/vim-scripts/bundle")
  Bundle 'Rip-Rip/clang_complete'
  Bundle 'msanders/snipmate.vim'
  Bundle 'scrooloose/nerdtree'
+ Bundle 'vim-scripts/perforce.vim'
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim-scripts/vimrc
