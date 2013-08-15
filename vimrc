@@ -2,7 +2,7 @@
 " Developer: osolong
 "             https://github.com/osolong/vim-scripts
 "
-"" Version: 1.0
+"" Version: 1.1
 "
 " How_to_install:
 "    $ cd
@@ -22,30 +22,26 @@
 "    -> Vim grep
 "    -> Cscope
 "    -> Taglist Plugin
-"    -> Project Plugin
+"    -> NerdTree Plugin
 "    -> Tag Generation
 "    -> Hex Mode
+"    -> clang_complete
 "    -> Sessions
 "
-" Plugins_Included:
-"     > taglist.vim - http://www.vim.org/scripts/download_script.php?src_id=7701
-"       Source code browser plugin
-"
-"     > project.vim - http://www.vim.org/scripts/download_script.php?src_id=6273
-"       Sets up a list of frequently-accessed files for easy navigation
-"
-"     > EnhCommentify.vim - http://www.vim.org/scripts/download_script.php?src_id=8319
-"       Enhanced Commentify. Quickly comments lines in a program.
-"
-"     > supertab.vim - http://www.vim.org/scripts/download_script.php?src_id=16104
-"       SuperTab. Do all your insert-mode completion with Tab.
-"
-"     > cscope_maps.vim - http://cscope.sourceforge.net/cscope_maps.vim
-"       Cscope key mapping for vim.
+" From Version 1.1 changed to Vundle to manage the plugins
+" Plugins included
+"    ervandew/supertab
+"    chazy/cscope_maps
+"    vim-scripts/taglist.vim
+"    Rip-Rip/clang_complete
+"    msanders/snipmate.vim
+"    scrooloose/nerdtree
 "
 "
 "  Revisions:
 "     > 0.1 Initial commit.
+"     > 1.0 Main functionality
+"     > 1.1 Changed to use vundle plugin manager. Removed project plugin.
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -53,12 +49,28 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin on
+filetype off
+filetype plugin indent on
 syntax on
 let mapleader = ","
 
+" Bundle plugin manager
+set rtp+=~/vim-scripts/bundle/vundle/
+call vundle#rc("~/vim-scripts/bundle")
+
+ " let Vundle manage Vundle
+ " required! 
+ Bundle 'gmarik/vundle'
+
+ Bundle 'ervandew/supertab'
+ Bundle 'chazy/cscope_maps'
+ Bundle 'vim-scripts/taglist.vim'
+ Bundle 'Rip-Rip/clang_complete'
+ Bundle 'msanders/snipmate.vim'
+ Bundle 'scrooloose/nerdtree'
+
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim-scripts/vimrc
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -104,11 +116,6 @@ imap <C-v> <ESC>"+pa
 
 " Indentation of a block of code <Ctrl-j>
 nmap <C-J> vip=                     " forces reindentation of block of code
-
-" Commentify a block of code on Visual Mode cc->comment cd->uncomment
-vmap co :call EnhancedCommentify('','guess')<CR>
-vmap cc :call EnhancedCommentify('','comment')<CR>
-vmap cd :call EnhancedCommentify('','decomment')<CR>
 
 "Highlight in red extra white spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -177,19 +184,16 @@ let Tlist_Enable_Fold_Column = 0    " Don't Show the fold indicator column in th
 let Tlist_WinWidth = 27
 
 """"""""""""""""""""""""""""""
-" => Project plugin
+" => NerdTree plugin
 """"""""""""""""""""""""""""""
-    map <A-S-p> :Project<CR>
-    map <A-S-o> :Project<CR>:redraw<CR>/
-    nmap <silent> <F3> <Plug>ToggleProject
-    let g:proj_window_width = 25
-    let g:proj_window_increment = 0
-    set tags+=~/vim-scripts/tags/kernel
+    map <F3> :NERDTreeToggle<CR>
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 
 """"""""""""""""""""""""""""""
 " => Tag Generation
 """"""""""""""""""""""""""""""
-map <C-x><C-x><C-T> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/vim-scripts/tags /usr/include /usr/local/include<CR><CR>
+map <C-x><C-x><C-T> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/vim-scripts/tags<CR><CR>
 map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 """"""""""""""""""""""""""""""
@@ -236,6 +240,26 @@ endfunction
 command! -bar HexmodeDx call ToggleHexDx()
 
 """""""""""""""""""""""""""""""
+" => clang_complete
+""""""""""""""""""""""""""""""
+let g:clang_auto_select=1
+let g:clang_complete_auto=0
+let g:clang_complete_copen=1
+let g:clang_hl_errors=1
+let g:clang_periodic_quickfix=0
+let g:clang_snippets=1
+let g:clang_snippets_engine="clang_complete"
+let g:clang_conceal_snippets=1
+let g:clang_exec="clang"
+let g:clang_user_options=""
+let g:clang_auto_user_options='path, .clang_complete'
+let g:clang_use_library=1
+let g:clang_library_path='/usr/lib'
+let g:clang_sort_algo="priority"
+let g:clang_complete_macros=1
+let g:clang_complete_patterns=1
+
+"""""""""""""""""""""""""""""""
 " => Sessions
 """"""""""""""""""""""""""""""
 " automatically load and save session on start/exit.
@@ -275,23 +299,6 @@ function! LoadSession()
     let b:sessiondir = ""
   endif
 endfunction
-
-let g:clang_auto_select=1
-let g:clang_complete_auto=0
-let g:clang_complete_copen=1
-let g:clang_hl_errors=1
-let g:clang_periodic_quickfix=0
-let g:clang_snippets=1
-let g:clang_snippets_engine="clang_complete"
-let g:clang_conceal_snippets=1
-let g:clang_exec="clang"
-let g:clang_user_options=""
-let g:clang_auto_user_options="path, .clang_complete"
-let g:clang_use_library=1
-let g:clang_library_path='/usr/lib'
-let g:clang_sort_algo="priority"
-let g:clang_complete_macros=1
-let g:clang_complete_patterns=1
 
 au VimEnter * nested :call LoadSession()
 map <leader>m :call MakeSession()<CR>

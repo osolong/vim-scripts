@@ -2,15 +2,16 @@
 DIRECTORY=~/vim-scripts
 PLUGIN=$DIRECTORY/plugin
 VIMRC=~/.vimrc
-CSCOPE_PATH=$HOME/cscope
 
-#Update address as needed
-WGET_TAGLIST=http://www.vim.org/scripts/download_script.php?src_id=19574
-WGET_PROJECT=http://www.vim.org/scripts/download_script.php?src_id=6273
-WGET_ENH_COMMENT=http://www.vim.org/scripts/download_script.php?src_id=8319
-WGET_SUPER_TAB=http://www.vim.org/scripts/download_script.php?src_id=18075
-WGET_CSCOPE_MAPS=http://cscope.sourceforge.net/cscope_maps.vim
-GITHUB_CLANG_COMPLETE=https://github.com/Rip-Rip/clang_complete.git
+# Updated if neccesary.
+VUNDLE_URL=https://github.com/gmarik/vundle.git
+
+check_if_sudo () {
+	if [ ! -z "`env | grep "SUDO"`" ]; then
+		echo "Error: Must be run without sudo"
+		exit 50
+	fi
+}
 
 initial_setup () {
     echo "========================================================"
@@ -30,57 +31,14 @@ create_vimrc() {
 create_if_missing() {
     if [ ! -d "$1" ]; then
         echo "Creating $1 !!"
-        sudo mkdir "$1"
+        sudo mkdir -d "$1"
     fi
 }
 
 install_cscope_maps() {
-    create_if_missing "$PLUGIN"
-    cd "$PLUGIN"
-    sudo wget -O cscope_maps.vim  $WGET_CSCOPE_MAPS
     cd
     cd $DIRECTORY
     sudo cp cscope_gen.sh /usr/bin
-}
-
-install_taglist (){
-    cd /usr/src
-    sudo wget -O taglist.zip $WGET_TAGLIST
-
-    create_if_missing "$DIRECTORY"
-    cd "$DIRECTORY"
-    sudo unzip -u /usr/src/taglist.zip
-}
-
-install_project(){
-    cd /usr/src
-    sudo wget -O project.tar.gz $WGET_PROJECT
-
-    create_if_missing "$DIRECTORY"
-    cd "$DIRECTORY"
-    sudo tar -xvzf /usr/src/project.tar.gz
-}
-
-install_enh_comment(){
-    cd /usr/src
-    sudo wget -O enh_comment.tar.gz $WGET_ENH_COMMENT
-
-    create_if_missing "$DIRECTORY"
-    cd "$DIRECTORY"
-    sudo tar -xvzf /usr/src/enh_comment.tar.gz
-    cd EnhancedCommentify-2.3
-    sudo cp -r * $DIRECTORY
-    cd $DIRECTORY
-    sudo rm -r EnhancedCommentify-2.3/
-}
-
-install_super_tab() {
-    cd /usr/src
-    sudo wget -O supertab.vba $WGET_SUPER_TAB
-
-    cd
-    export user=$(whoami)
-    sudo vim /usr/src/supertab.vba -c ":so %" -c ":q" -c ":helptags ~/vim-scripts/doc"
 }
 
 install_colortools() {
@@ -90,44 +48,35 @@ install_colortools() {
     sudo cp colorgccrc ~/.colorgccrc
     sudo cp color-logcat /usr/bin
     cd /usr/local/bin
-    sudo ln -s /usr/bin/colorgcc gcc
-    sudo ln -s /usr/bin/colorgcc g++
-    sudo ln -s /usr/bin/colorgcc cc
-    sudo ln -s /usr/bin/colorgcc c++
-}
-
-install_clangcomplete() {
-    cd
-    cd $DIRECTORY
-	mkdir code
-	cd code
-	git clone $GITHUB_CLANG_COMPLETE
-	cd clang_complete
-	make install
-	cd
-	cd $DIRECTORY
-	sudo rm -r code/
+    sudo ln -sf /usr/bin/colorgcc gcc
+    sudo ln -sf /usr/bin/colorgcc g++
+    sudo ln -sf /usr/bin/colorgcc cc
+    sudo ln -sf /usr/bin/colorgcc c++
 }
 
 install_usbreset() {
 	cd
 	cd $DIRECTORY
 	mkdir bin
-	gcc usbreset.c -o bin/usbreset 
+	gcc usbreset.c -o bin/usbreset
 	sudo cp usbreset /usr/bin
 }
 
+install_vundle() {
+	cd
+	cd $DIRECTORY
+	git clone $VUNDLE_URL bundle/vundle
+	vim +BundleInstall +qall
+}
+
+check_if_sudo
 initial_setup
 create_vimrc
-install_taglist
-install_project
-install_enh_comment
-install_super_tab
-install_cscope_maps
+install_usbreset
 install_colortools
+install_vundle
 cd
 sudo chown -R $user:$user vim-scripts
-install_clangcomplete
 install_usbreset
 
 echo "----------------------------------------------------"

@@ -1,7 +1,7 @@
  Developer: osolong
              https://github.com/osolong/vim-scripts
 
- Version: 0.4
+ Version: 0.5
 
  How_to_install:
     $ cd
@@ -15,24 +15,28 @@
     $ popd
 
  Plugins_Included:
-     > taglist.vim - http://www.vim.org/scripts/download_script.php?src_id=7701
+     > taglist.vim - https://github.com/vim-scripts/taglist.vim
        Source code browser plugin
 
-     > project.vim - http://www.vim.org/scripts/download_script.php?src_id=6273
-       Sets up a list of frequently-accessed files for easy navigation
-
-     > EnhCommentify.vim - http://www.vim.org/scripts/download_script.php?src_id=8319
-       Enhanced Commentify. Quickly comments lines in a program.
-
-     > supertab.vim - http://www.vim.org/scripts/download_script.php?src_id=16104
+     > supertab.vim - https://github.com/ervandew/supertab
        SuperTab. Do all your insert-mode completion with Tab.
 
-     > cscope_maps.vim - http://cscope.sourceforge.net/cscope_maps.vim
+     > cscope_maps.vim - https://github.com/chazy/cscope_maps
        Cscope key mapping for vim.
 
+	 > snipmate.vim - https://github.com/msanders/snipmate.vim
+	 	TextMate-style snippets for Vim
+
+	 > NERDTree.vim - https://github.com/scrooloose/nerdtree
+		 A tree explorer plugin for navigating the filesystem
+
+	 > clang_complete - https://github.com/Rip-Rip/clang_complete
+		Use of Clang for completing C, C++, Objective-C and Objective-C++
 
   Revisions:
      > 0.1 Initial commit.
      > 0.2 Miscelaneous fixes. Added F5 to show hidden characters. F6 to replace tabs with spaces.
      > 0.3 Added colorgcc from Johannes Schluter https://github.com/johannes/colorgcci
      > 0.4 Added coloredlogcat.py from Jeff Sharkey http://jsharkey.org. Renamed as color-logcat
+	 > 0.5 Added clang_complete, NERDTree and snipmate
+	 > 0.6 Changed to Vundle Plugin Manager. Removed Project and EnhancedCommentify.
