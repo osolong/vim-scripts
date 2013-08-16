@@ -31,7 +31,7 @@ create_vimrc() {
 create_if_missing() {
     if [ ! -d "$1" ]; then
         echo "Creating $1 !!"
-        sudo mkdir -d "$1"
+        sudo mkdir -p "$1"
     fi
 }
 
