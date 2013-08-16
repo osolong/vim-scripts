@@ -2,7 +2,7 @@
 " Developer: osolong
 "             https://github.com/osolong/vim-scripts
 "
-"" Version: 1.1
+" Version: 0.8
 "
 " How_to_install:
 "    $ cd
@@ -28,20 +28,16 @@
 "    -> clang_complete
 "    -> Sessions
 "
-" From Version 1.1 changed to Vundle to manage the plugins
+" From Version 0.6 changed to Vundle to manage the plugins
 " Plugins included
-"    ervandew/supertab
-"    chazy/cscope_maps
-"    vim-scripts/taglist.vim
-"    Rip-Rip/clang_complete
-"    msanders/snipmate.vim
-"    scrooloose/nerdtree
-"
-"
-"  Revisions:
-"     > 0.1 Initial commit.
-"     > 1.0 Main functionality
-"     > 1.1 Changed to use vundle plugin manager. Removed project plugin.
+"	ervandew/supertab
+"	chazy/cscope_maps
+"	vim-scripts/taglist.vim
+"	Rip-Rip/clang_complete
+"	ervandew/snipmate.vim
+"	scrooloose/nerdtree
+"	osolong/vim-perforce
+"	mileszs/ack.vim
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -66,7 +62,7 @@ call vundle#rc("~/vim-scripts/bundle")
  Bundle 'chazy/cscope_maps'
  Bundle 'vim-scripts/taglist.vim'
  Bundle 'Rip-Rip/clang_complete'
- Bundle 'msanders/snipmate.vim'
+ Bundle 'ervandew/snipmate.vim'
  Bundle 'scrooloose/nerdtree'
  Bundle 'osolong/vim-perforce'
  Bundle 'mileszs/ack.vim'

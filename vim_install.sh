@@ -61,7 +61,7 @@ install_colortools() {
 install_usbreset() {
 	cd
 	cd $DIRECTORY
-	mkdir bin
+	mkdir -d bin
 	gcc usbreset.c -o bin/usbreset
 	sudo cp usbreset /usr/bin
 }
