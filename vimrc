@@ -46,7 +46,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin on
 filetype off
-filetype plugin indent on
 syntax on
 let mapleader = ","
 
@@ -58,15 +57,23 @@ call vundle#rc("~/vim-scripts/bundle")
  " required!
  Bundle 'gmarik/vundle'
 
- Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
  Bundle 'chazy/cscope_maps'
  Bundle 'vim-scripts/taglist.vim'
- Bundle 'Rip-Rip/clang_complete'
- Bundle 'ervandew/snipmate.vim'
+" Bundle 'Rip-Rip/clang_complete'
+" Bundle 'msanders/snipmate.vim'
  Bundle 'scrooloose/nerdtree'
  Bundle 'osolong/vim-perforce'
  Bundle 'mileszs/ack.vim'
+ Bundle 'xolox/vim-session'
+ Bundle 'xolox/vim-misc'
+ Bundle 'sjl/gundo.vim'
+ Bundle 'bling/vim-airline'
+ Bundle 'Valloric/YouCompleteMe'
+ Bundle 'SirVer/ultisnips'
+ Bundle 'honza/vim-snippets'
 
+filetype plugin indent on
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim-scripts/vimrc
 
@@ -128,17 +135,18 @@ syn keyword cOperator likely unlikely
 "Toggle Show Hidden Characters
 "Tabs, Trailing Spaces and EOL
 let g:showHidden = 0
-function ToggleShowHiddenChars()
+function! ToggleShowHiddenChars()
 	if g:showHidden
 		set nolist
 	else
-		set list listchars=tab:»·,trail:·,eol:¶,nbsp:·
+		set list listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 	endif
 	let g:showHidden = !g:showHidden
 endfunction
 
 nmap <silent> <F5> <Esc>:call ToggleShowHiddenChars()<CR>
 nmap <silent> <F6> <Esc>:retab<CR>
+nnoremap <F7> :GundoToggle<CR>
 
 """"""""""""""""""""""""""""""
 " => Vim grep
@@ -237,67 +245,28 @@ endfunction
 " ex command for toggling hex mode - define mapping if desired
 command! -bar HexmodeDx call ToggleHexDx()
 
-"""""""""""""""""""""""""""""""
-" => clang_complete
-""""""""""""""""""""""""""""""
-let g:clang_auto_select=1
-let g:clang_complete_auto=0
-let g:clang_complete_copen=1
-let g:clang_hl_errors=1
-let g:clang_periodic_quickfix=0
-let g:clang_snippets=1
-let g:clang_snippets_engine="clang_complete"
-let g:clang_conceal_snippets=1
-let g:clang_exec="clang"
-let g:clang_user_options=""
-let g:clang_auto_user_options='path, .clang_complete'
-let g:clang_use_library=1
-let g:clang_library_path='/usr/lib'
-let g:clang_sort_algo="priority"
-let g:clang_complete_macros=1
-let g:clang_complete_patterns=1
+let g:session_autosave_periodic='no'
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
 
-"""""""""""""""""""""""""""""""
-" => Sessions
-""""""""""""""""""""""""""""""
-" automatically load and save session on start/exit.
-" Creates a session
-function! MakeSession()
-  let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
-  if (filewritable(b:sessiondir) != 2)
-    exe 'silent !mkdir -p ' b:sessiondir
-    redraw!
-  endif
-  let b:sessionfile = b:sessiondir . '/session.vim'
-  exe "mksession! " . b:sessionfile
-endfunction
+"Airline
+let g:airline#extensions#tabline#enabled = 2
+set laststatus=2
 
-" Updates a session, BUT ONLY IF IT ALREADY EXISTS
-function! UpdateSession()
-  let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
-  let b:sessionfile = b:sessiondir . "/session.vim"
-  if (filereadable(b:sessionfile))
-    exe "mksession! " . b:sessionfile
-    echo "updating session"
-  endif
-endfunction
+" Complete options (disable preview scratch window)
+set completeopt=menu,menuone,longest
+" Limit popup menu height
+set pumheight=15
+" Renable backspace
+set backspace=indent,eol,start
 
-" Loads a session if it exists
-function! LoadSession()
-  if argc() == 0
-    let b:sessiondir = $HOME . "/vim-scripts/sessions" . getcwd()
-    let b:sessionfile = b:sessiondir . "/session.vim"
-    if (filereadable(b:sessionfile))
-      exe 'source ' b:sessionfile
-    else
-      echo "No session loaded."
-    endif
-  else
-    let b:sessionfile = ""
-    let b:sessiondir = ""
-  endif
-endfunction
+let g:ycm_global_ycm_extra_conf = "~/vim-scripts/.ycm_extra_conf.py"
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
-au VimEnter * nested :call LoadSession()
-map <leader>m :call MakeSession()<CR>
-map <leader>l :call LoadSession()<CR>
+" Trigger configuration.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
